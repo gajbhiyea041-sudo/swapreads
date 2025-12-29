@@ -1,11 +1,71 @@
+/* ===== RESET ===== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Segoe UI", sans-serif;
 }
 
+/* ===== ROOT VARIABLES (DESIGN SYSTEM) ===== */
+:root {
+  --bg-main: #f8f5f1;       /* paper white */
+  --bg-card: #ffffff;
+  --text-main: #1f2933;     /* ink */
+  --text-muted: #6b7280;
+  --accent: #c89b3c;        /* gold accent */
+  --border-soft: #e5e7eb;
+}
+
+/* ===== BODY ===== */
 body {
-  background: linear-gradient(135deg, #f5f7fa, #e4ecf7);
-  color: #1f2933;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  font-family: "Inter", "Segoe UI", sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== LINKS ===== */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ===== BUTTON ===== */
+button {
+  font-family: inherit;
+  background: var(--accent);
+  color: #111827;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* ===== CARD (Books, Sections, Forms) ===== */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: 18px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+}
+
+/* ===== TEXT HELPERS ===== */
+.text-muted {
+  color: var(--text-muted);
+}
+
+.text-accent {
+  color: var(--accent);
+}
+
+/* ===== SMOOTH ===== */
+html {
+  scroll-behavior: smooth;
 }
