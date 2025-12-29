@@ -1,4 +1,47 @@
+import { useState } from "react";
+import { db, auth } from "../firebase";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+
 function AddBook() {
+  const [title, setTitle] = useState("");
+  const [author, setAuthor] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleAddBook = async (e) => {
+    e.preventDefault();
+
+    if (!auth.currentUser) {
+      alert("Please login first");
+      return;
+    }
+
+    if (!title || !author) {
+      alert("Fill all fields");
+      return;
+    }
+
+    try {
+      setLoading(true);
+
+      await addDoc(collection(db, "books"), {
+        title,
+        author,
+        userId: auth.currentUser.uid,
+        userName: auth.currentUser.displayName,
+        createdAt: serverTimestamp(),
+      });
+
+      setTitle("");
+      setAuthor("");
+      alert("Book added successfully 📚");
+    } catch (err) {
+      console.error(err);
+      alert("Failed to add book");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div
       style={{
@@ -7,100 +50,70 @@ function AddBook() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        color: "white",
         padding: "40px",
-        color: "white"
       }}
     >
-      <div
+      <form
+        onSubmit={handleAddBook}
         style={{
-          width: "100%",
-          maxWidth: "460px",
           backgroundColor: "#020617",
           border: "1px solid #1e293b",
           borderRadius: "16px",
           padding: "32px",
-          boxShadow: "0 20px 40px rgba(0,0,0,0.4)"
+          width: "100%",
+          maxWidth: "420px",
+          boxShadow: "0 20px 40px rgba(0,0,0,0.4)",
         }}
       >
-        <h2
-          style={{
-            fontFamily: "serif",
-            fontSize: "28px",
-            marginBottom: "10px"
-          }}
-        >
-          Add a Book 📘
+        <h2 style={{ marginBottom: "20px", fontFamily: "serif" }}>
+          Add a Book 📖
         </h2>
 
-        <p style={{ color: "#94a3b8", marginBottom: "28px" }}>
-          Share a book with the SwapReads community
-        </p>
+        <input
+          placeholder="Book Title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          style={inputStyle}
+        />
 
-        {/* Title */}
-        <div style={{ marginBottom: "18px" }}>
-          <label style={{ color: "#cbd5f5", fontSize: "14px" }}>
-            Book Title
-          </label>
-          <input
-            type="text"
-            placeholder="Eg. Atomic Habits"
-            style={inputStyle}
-          />
-        </div>
+        <input
+          placeholder="Author Name"
+          value={author}
+          onChange={(e) => setAuthor(e.target.value)}
+          style={inputStyle}
+        />
 
-        {/* Author */}
-        <div style={{ marginBottom: "18px" }}>
-          <label style={{ color: "#cbd5f5", fontSize: "14px" }}>
-            Author
-          </label>
-          <input
-            type="text"
-            placeholder="Eg. James Clear"
-            style={inputStyle}
-          />
-        </div>
-
-        {/* Condition */}
-        <div style={{ marginBottom: "26px" }}>
-          <label style={{ color: "#cbd5f5", fontSize: "14px" }}>
-            Condition
-          </label>
-          <select style={inputStyle}>
-            <option>New</option>
-            <option>Good</option>
-            <option>Used</option>
-          </select>
-        </div>
-
-        {/* Button */}
         <button
+          type="submit"
+          disabled={loading}
           style={{
             width: "100%",
-            padding: "14px",
+            padding: "12px",
             backgroundColor: "#facc15",
             color: "#020617",
             border: "none",
             borderRadius: "8px",
             fontWeight: "600",
-            cursor: "pointer"
+            cursor: "pointer",
+            marginTop: "16px",
           }}
         >
-          Add Book
+          {loading ? "Adding..." : "Add Book"}
         </button>
-      </div>
+      </form>
     </div>
   );
 }
 
 const inputStyle = {
   width: "100%",
-  padding: "12px 14px",
-  marginTop: "6px",
-  backgroundColor: "#020617",
-  border: "1px solid #1e293b",
+  padding: "12px",
+  marginBottom: "14px",
   borderRadius: "8px",
+  border: "1px solid #1e293b",
+  backgroundColor: "#020617",
   color: "white",
-  outline: "none"
 };
 
 export default AddBook;
