@@ -1,23 +1,21 @@
-import BookRow from "../components/BookRow";
+import Sidebar from "../components/sidebar";
+import BookRow from "../components/bookrow";
+import ChatPanel from "../components/chatpanel";
 
-export default function Home() {
+function Home() {
   return (
-    <div className="home-dashboard">
-      <div className="search-bar">
-        <input placeholder="Search for books" />
-        <button>Search</button>
-      </div>
+    <div className="dashboard">
+      <Sidebar />
 
-      <div className="categories">
-        {["All", "Fiction", "Romance", "Fantasy", "Mystery"].map(
-          (cat) => (
-            <span key={cat}>{cat}</span>
-          )
-        )}
-      </div>
+      <main className="main-content">
+        <BookRow title="Popular Books" />
+        <BookRow title="Recently Added" />
+        <BookRow title="Recommended for You" />
+      </main>
 
-      <BookRow title="Popular Books" />
-      <BookRow title="Best Sellers" />
+      <ChatPanel />
     </div>
   );
 }
+
+export default Home;
