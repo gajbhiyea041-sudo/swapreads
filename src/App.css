@@ -1,78 +1,96 @@
-/* ===== APP LAYOUT ===== */
-
-.app-container {
-  max-width: 1200px;
-  margin: auto;
-  padding: 60px 24px;
+.app-layout {
+  display: grid;
+  grid-template-columns: 70px 1fr 320px;
+  height: 100vh;
+  gap: 16px;
+  padding: 16px;
+}
+.sidebar {
+  background: var(--bg-soft);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px 0;
 }
 
-/* ===== SECTION SPACING ===== */
-.section {
-  margin-bottom: 60px;
+.sidebar span {
+  font-size: 20px;
+  margin: 20px 0;
+  cursor: pointer;
+}
+.chat-panel {
+  background: var(--bg-soft);
+  border-radius: 24px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
 }
 
-/* ===== CARD (Premium Look) ===== */
-.card {
+.chat-box {
+  flex: 1;
+  margin: 16px 0;
+}
+
+.msg {
+  background: white;
+  padding: 10px 14px;
+  border-radius: 14px;
+  margin-bottom: 8px;
+}
+
+.msg.user {
+  background: #ffd7cc;
+  align-self: flex-end;
+}
+.book-scroll {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+}
+
+.book-card {
+  min-width: 140px;
   background: white;
   border-radius: 18px;
-  padding: 28px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  padding: 12px;
 }
 
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+.cover {
+  height: 180px;
+  background: #ddd;
+  border-radius: 14px;
+}
+.home-dashboard {
+  background: var(--bg-soft);
+  border-radius: 24px;
+  padding: 24px;
+  overflow-y: auto;
 }
 
-/* ===== BUTTONS ===== */
-button {
-  background: linear-gradient(135deg, #4f46e5, #6366f1);
+.search-bar {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 12px 18px;
+  border-radius: 20px;
+  border: none;
+}
+
+.search-bar button {
+  background: var(--accent);
   color: white;
   border: none;
-  padding: 12px 22px;
-  border-radius: 10px;
+  padding: 12px 24px;
+  border-radius: 20px;
+}
+
+.categories span {
+  margin-right: 12px;
+  font-weight: 500;
   cursor: pointer;
-  font-weight: 600;
-  letter-spacing: 0.3px;
-  transition: all 0.25s ease;
-}
-
-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 25px rgba(79, 70, 229, 0.35);
-}
-
-/* ===== INPUTS ===== */
-input,
-select,
-textarea {
-  width: 100%;
-  padding: 12px 14px;
-  margin-top: 8px;
-  border-radius: 10px;
-  border: 1px solid #cbd5e1;
-  font-size: 15px;
-  transition: border 0.2s ease, box-shadow 0.2s ease;
-}
-
-input:focus,
-select:focus,
-textarea:focus {
-  outline: none;
-  border-color: #4f46e5;
-  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
-}
-
-/* ===== PAGE TITLES ===== */
-.page-title {
-  font-size: 34px;
-  font-weight: 700;
-  margin-bottom: 20px;
-}
-
-/* ===== SUBTEXT ===== */
-.subtext {
-  color: #64748b;
-  font-size: 15px;
 }
