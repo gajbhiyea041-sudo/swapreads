@@ -1,10 +1,13 @@
-.app-layout {
+.dashboard {
   display: grid;
-  grid-template-columns: 70px 1fr 320px;
-  height: 100vh;
+  grid-template-columns: 80px 1fr 320px;
+  min-height: 100vh;
+  background: #f7f3ee;
   gap: 16px;
   padding: 16px;
 }
+
+/* Sidebar */
 .sidebar {
   background: var(--bg-soft);
   border-radius: 20px;
@@ -19,6 +22,16 @@
   margin: 20px 0;
   cursor: pointer;
 }
+
+/* Main center panel */
+.home-dashboard {
+  background: var(--bg-soft);
+  border-radius: 24px;
+  padding: 24px;
+  overflow-y: auto;
+}
+
+/* Chat panel */
 .chat-panel {
   background: var(--bg-soft);
   border-radius: 24px;
@@ -43,6 +56,8 @@
   background: #ffd7cc;
   align-self: flex-end;
 }
+
+/* Books row */
 .book-scroll {
   display: flex;
   gap: 16px;
@@ -60,48 +75,4 @@
   height: 180px;
   background: #ddd;
   border-radius: 14px;
-}
-.home-dashboard {
-  background: var(--bg-soft);
-  border-radius: 24px;
-  padding: 24px;
-  overflow-y: auto;
-}
-
-.search-bar {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 16px;
-}
-
-.search-bar input {
-  flex: 1;
-  padding: 12px 18px;
-  border-radius: 20px;
-  border: none;
-}
-
-.search-bar button {
-  background: var(--accent);
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 20px;
-}
-
-.categories span {
-  margin-right: 12px;
-  font-weight: 500;
-  cursor: pointer;
-}
-.dashboard {
-  display: flex;
-  height: 100vh;
-  background: #f5efe6;
-}
-
-.main-content {
-  flex: 1;
-  padding: 24px;
-  overflow-y: auto;
 }
